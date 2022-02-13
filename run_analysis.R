@@ -70,7 +70,7 @@ variable_cols <- names(train_test[,c(-num_columns, -(num_columns-1))])
 melt_df <- melt(train_test,id=c("subCode","Target"),measure.vars = mvars)
 
 # average of each variable by subject code and activity
-g_subCode_Target <- melt_df %>% group_by(subCode, Target) %>% dplyr::summarize(mean=mean(value))
+g_subCode_Target <- melt_df %>% group_by(subCode, Target, variable) %>% dplyr::summarize(mean=mean(value))
 g_subCode_Target
 
 write.table(g_subCode_Target,file = "result.txt", row.names = F)
